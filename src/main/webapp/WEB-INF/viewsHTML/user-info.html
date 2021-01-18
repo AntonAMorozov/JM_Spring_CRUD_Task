@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/Update user</title>
+    <style>
+        html, body{width:100%; height:100%; margin:0}
+        #action_form{
+            position:absolute;
+            width:200px;
+            height:300px;
+            margin-left:10px;
+        }
+        form{padding:14px}
+        ul {margin-left: 20px;}
+    </style>
+</head>
+<body>
+
+<ul>
+    <h2>User Info</h2>
+</ul>
+
+<div id="action_form">
+<form th:method="post" th:action="@{/saveUser}" th:object="${newUser}">
+
+    <input hidden type="number" th:field="*{id}" id="id"  />
+
+    <label for="name">Name: </label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name" />
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <br>
+    <label for="surname">Surname: </label>
+    <input type="text" th:field="*{surname}" id="surname" placeholder="Surname" />
+    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+    <br>
+    <label for="age">Age</label>
+    <input type="number" th:field="*{age}" id="age" placeholder="Age"/>
+    <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+    <br>
+    <label for="job">Job</label>
+    <input type="text" th:field="*{job}" id="job" placeholder="Job" />
+    <span th:if="${#fields.hasErrors('job')}" th:errors="*{job}"></span>
+    <br>
+    <label for="email">E-mail</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="E-mail" />
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <br>
+    <label for="phoneNumber">Phone Number</label>
+    <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="XXX-XXX-XX-XX" />
+    <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+    <br>
+    <br>
+    <input type="submit" value="Ok">
+</form>
+</div>
+
+
+</body>
+</html>
