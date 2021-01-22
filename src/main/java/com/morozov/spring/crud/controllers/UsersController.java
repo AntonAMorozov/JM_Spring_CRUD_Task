@@ -37,7 +37,9 @@ public class UsersController {
             return "user-info";
         } else {
             String pN = user.getPhoneNumber();
-            user.setPhoneNumber("+7 " + pN);
+            if (!pN.startsWith("+7")) {
+                user.setPhoneNumber("+7 " + pN);
+            }
             userService.saveUser(user);
         }
         return "redirect:/";

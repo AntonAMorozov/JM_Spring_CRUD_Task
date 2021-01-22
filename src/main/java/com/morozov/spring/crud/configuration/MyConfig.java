@@ -29,17 +29,9 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class MyConfig implements WebMvcConfigurer {
 
-    private final ApplicationContext applicationContext;
-
-    @Autowired
-    public MyConfig(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
-    }
-
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/viewsHTML/");
         templateResolver.setSuffix(".html");
         return templateResolver;
@@ -55,7 +47,7 @@ public class MyConfig implements WebMvcConfigurer {
         return dataSource;
     }
 
-    @Bean// Новый код
+    @Bean
     public LocalContainerEntityManagerFactoryBean entityManager() {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource());
